@@ -1,1 +1,54 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Monster Watch</title></head><body><p>placeholder</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monster Watch</title>
+<style>
+  :root{--ink:#efe4cc;--dim:#9a8b70;--gold:#d4b45a;--bg:#07090c}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:Georgia,serif;overflow:hidden}
+  #wrap{display:flex;flex-direction:column;height:100%}
+  header{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:#0c1116;border-bottom:1px solid #2c2618}
+  h1{font-size:15px;letter-spacing:.16em;color:var(--gold);font-weight:400}
+  h1 small{display:block;color:var(--dim);letter-spacing:.06em;font-size:11px;margin-top:2px}
+  #hud{display:flex;gap:16px;font-size:13px;color:var(--dim)}
+  #hud b{color:var(--ink)}
+  #stage{flex:1;position:relative;min-height:0}
+  canvas{width:100%;height:100%;display:block;cursor:crosshair;background:#0a0e12}
+  #ov{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,8,10,.92);z-index:6}
+  #ov.show{display:flex}
+  .card{width:min(680px,92vw);background:#141b22;border:1px solid #3a3224;padding:28px 30px}
+  .card h2{color:var(--gold);font-weight:400;margin-bottom:8px;letter-spacing:.05em}
+  .card p{color:var(--dim);line-height:1.5;margin-bottom:16px}
+  .g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  button{font-family:inherit;text-align:left;background:#1c242c;color:var(--ink);border:1px solid #4a3f2a;padding:11px 12px;cursor:pointer}
+  button:hover{border-color:var(--gold);color:var(--gold)}
+  button b{display:block;color:var(--gold);font-weight:400}
+  button i{display:block;font-style:normal;color:var(--dim);font-size:12px;margin-top:4px}
+  #bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:8px 12px;background:#0c1116;border-top:1px solid #2c2618;font-size:12px}
+  .am{border:1px solid #333;background:#1a2228;color:var(--dim);padding:6px 8px}
+  .am.on{border-color:var(--gold);color:var(--ink)}
+  #log{position:absolute;left:14px;bottom:12px;max-width:380px;font-size:13px;text-shadow:0 1px 5px #000;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <header>
+    <h1>MONSTER WATCH <small>Warden of the Marches</small></h1>
+    <div id="hud">Village <b id="hp">100</b> · Materials <b id="mat">0</b> · Watches <b id="wn">0</b></div>
+  </header>
+  <div id="stage">
+    <canvas id="c"></canvas>
+    <div id="ov" class="show"><div class="card" id="menu">
+      <h2>Take the wall</h2>
+      <p>You are one man with a bow. The things coming for this village have names. Study them. Kill them. That is the watch.</p>
+      <div class="g" id="cs"></div>
+    </div></div>
+    <div id="log"></div>
+  </div>
+  <div id="bar"></div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
